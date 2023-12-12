@@ -4,21 +4,9 @@
     {
         static void Main(string[] args)
         {
-            try
-            {
-                string str = "true";
-                bool b = Convert.ToBoolean(str);
-                Console.WriteLine(b);
-
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("the number could not be converted into a byte");
-            }
-
-
-
-            
+            int a = 5;
+            int b = a -= 3;
+            Console.WriteLine(b);
         }
     }
 }
