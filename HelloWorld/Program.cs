@@ -4,8 +4,21 @@
     {
         static void Main(string[] args)
         {
-            const float Pi = 3.14f;
-            Pi = 1;
+            try
+            {
+                string str = "true";
+                bool b = Convert.ToBoolean(str);
+                Console.WriteLine(b);
+
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("the number could not be converted into a byte");
+            }
+
+
+
+            
         }
     }
 }
