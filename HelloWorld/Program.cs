@@ -4,8 +4,13 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+
+            byte number = 255;
+            number++;
+
+            Console.WriteLine(number);
             Console.Beep();
+            
         }
     }
 }
