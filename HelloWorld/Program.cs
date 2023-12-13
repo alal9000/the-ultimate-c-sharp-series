@@ -1,14 +1,21 @@
-﻿namespace HelloWorld
+﻿using HelloWorld.Math;
+
+namespace HelloWorld
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            var a = 1;
-            var b = 2;
-            var c = 3;
+            var john = new Person();
+            john.FirstName = "John";
+            john.LastName = "Smith";
+            john.Introduce();
 
-            Console.WriteLine(!(c > b || c == a ));
+            Calculator calculator = new Calculator();
+            var result = calculator.Add(1, 2);
+            Console.WriteLine(result);
+
+
         }
     }
 }
