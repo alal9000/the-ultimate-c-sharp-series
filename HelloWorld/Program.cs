@@ -4,9 +4,11 @@
     {
         static void Main(string[] args)
         {
-            int a = 5;
-            int b = a -= 3;
-            Console.WriteLine(b);
+            var a = 1;
+            var b = 2;
+            var c = 3;
+
+            Console.WriteLine(!(c > b || c == a ));
         }
     }
 }
