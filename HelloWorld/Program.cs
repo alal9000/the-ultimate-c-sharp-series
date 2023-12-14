@@ -1,25 +1,23 @@
 ﻿namespace HelloWorld
 {
-    public enum shippingMethod
-    {
-        REGULARAIRMAIL = 1,
-        REGISTEREDAIRMAIL = 2,
-        EXPRESS = 3
-    }
     internal class Program
     {
         static void Main(string[] args)
         {
-            var a = 10;
-            var b = a;
-            b++;
+            var season = Season.AUTUMN;
 
-            Console.WriteLine(string.Format("a: {0}, b: {1}", a, b));
+            switch (season)
+            {
+                case Season.AUTUMN:
+                case Season.SUMMER:
+                    Console.WriteLine("we have got promotion");
+                    break;
 
-            var array1 = new int[3] { 1, 2, 3 };
-            var array2 = array1;
-            array2[0] = 0;
-            Console.WriteLine(string.Format("array1[0]: {0}, array2[0]: {1}", array1[0], array2[0]));
+                default:
+                    Console.WriteLine("I dont understand that season!");
+                    break;
+            }
         }
+
     }
 }
