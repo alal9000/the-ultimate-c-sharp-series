@@ -10,16 +10,16 @@
     {
         static void Main(string[] args)
         {
-            var method = shippingMethod.EXPRESS;
-            Console.WriteLine((int)method);
+            var a = 10;
+            var b = a;
+            b++;
 
-            var methodId = 3;
-            Console.WriteLine((shippingMethod)methodId);
+            Console.WriteLine(string.Format("a: {0}, b: {1}", a, b));
 
-            Console.WriteLine(method.ToString());
-
-            var methodName = "Express";
-            var ship = (shippingMethod)Enum.Parse(typeof(shippingMethod), methodName);
+            var array1 = new int[3] { 1, 2, 3 };
+            var array2 = array1;
+            array2[0] = 0;
+            Console.WriteLine(string.Format("array1[0]: {0}, array2[0]: {1}", array1[0], array2[0]));
         }
     }
 }
