@@ -4,23 +4,24 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter a number: ");
-            var input1 = Console.ReadLine();
+            Console.Write("Enter width of image: ");
+            var width = Console.ReadLine();
 
-            int convertedInput1 = Convert.ToInt32(input1);
+            int convertedWidth = Convert.ToInt32(width);
 
-            Console.WriteLine("Enter another number: ");
-            var input2 = Console.ReadLine();
+            Console.Write("Enter height of image: ");
+            var height = Console.ReadLine();
 
-            int convertedInput2 = Convert.ToInt32(input2);
+            int convertedHeight = Convert.ToInt32(height);
 
-            if (convertedInput1 > convertedInput2)
+            if (convertedWidth > convertedHeight)
             {
-                Console.WriteLine(convertedInput1);
+                
+                Console.WriteLine("landscape");
             }     
-            else if (convertedInput2 > convertedInput1)
+            else if (convertedHeight > convertedWidth)
             {
-                Console.WriteLine(convertedInput2);
+                Console.WriteLine("Portrait");
             }
             else
             {
