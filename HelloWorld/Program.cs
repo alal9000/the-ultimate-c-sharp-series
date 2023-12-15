@@ -4,24 +4,21 @@
     {
         static void Main(string[] args)
         {
-            var number = 1;
-            Increment(number);
-            Console.WriteLine(number);
+            Console.WriteLine("Enter number between 1 and 10");
+            var input = Console.ReadLine();
 
-            var person = new Person() { age = 20 };
-            MakeOld(person);
-            Console.WriteLine(person.age);
+            int convertedInput = Convert.ToInt32(input);
 
-        }
+            if (convertedInput > 0 && convertedInput < 11)
+            {
+                Console.WriteLine("Valid");
+            }     
+            else
+            {
+                Console.WriteLine("Invalid");
+            }
+                
 
-        public static void Increment(int number)
-        {
-            number += 10;
-        }
-
-        public static void MakeOld(Person person)
-        {
-            person.age += 10;
         }
     }
 }
