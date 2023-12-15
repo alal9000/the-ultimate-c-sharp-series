@@ -4,20 +4,24 @@
     {
         static void Main(string[] args)
         {
-            var season = Season.AUTUMN;
+            var number = 1;
+            Increment(number);
+            Console.WriteLine(number);
 
-            switch (season)
-            {
-                case Season.AUTUMN:
-                case Season.SUMMER:
-                    Console.WriteLine("we have got promotion");
-                    break;
+            var person = new Person() { age = 20 };
+            MakeOld(person);
+            Console.WriteLine(person.age);
 
-                default:
-                    Console.WriteLine("I dont understand that season!");
-                    break;
-            }
         }
 
+        public static void Increment(int number)
+        {
+            number += 10;
+        }
+
+        public static void MakeOld(Person person)
+        {
+            person.age += 10;
+        }
     }
 }

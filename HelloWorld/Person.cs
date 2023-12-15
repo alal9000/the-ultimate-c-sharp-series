@@ -2,13 +2,13 @@
 {
     public class Person
     {
-        public string FirstName;
-        public string LastName;
+        public string firstName;
+        public string lastName;
         public int age;
 
         public void Introduce()
         {
-            Console.WriteLine("My name is " + FirstName + " " + LastName);
+            Console.WriteLine("My name is " + firstName + " " + lastName);
         }
     }
 }
