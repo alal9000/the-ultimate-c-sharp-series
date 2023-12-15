@@ -4,23 +4,17 @@
     {
         static void Main(string[] args)
         {
-            while (true)
-            {
-                Console.Write("type your name: ");
-                var input = Console.ReadLine();
+            var random = new Random();
 
-                if (!String.IsNullOrWhiteSpace(input))
-                {
-                    Console.WriteLine("@Echo: " + input);
-                    continue;
-                }
+            const int passwordLength = 10;
 
-                break;
+            var buffer = new char[passwordLength];
+            for (var i = 0; i < passwordLength; i++)
+                buffer[i] = (char)('a' + random.Next(0, 26));
 
+            var password = new string(buffer);
 
-                
-
-            }
+            Console.WriteLine(password);
         }
     }
 }
