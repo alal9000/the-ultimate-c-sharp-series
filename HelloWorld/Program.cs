@@ -4,18 +4,27 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter number between 1 and 10");
-            var input = Console.ReadLine();
+            Console.WriteLine("Enter a number: ");
+            var input1 = Console.ReadLine();
 
-            int convertedInput = Convert.ToInt32(input);
+            int convertedInput1 = Convert.ToInt32(input1);
 
-            if (convertedInput > 0 && convertedInput < 11)
+            Console.WriteLine("Enter another number: ");
+            var input2 = Console.ReadLine();
+
+            int convertedInput2 = Convert.ToInt32(input2);
+
+            if (convertedInput1 > convertedInput2)
             {
-                Console.WriteLine("Valid");
+                Console.WriteLine(convertedInput1);
             }     
+            else if (convertedInput2 > convertedInput1)
+            {
+                Console.WriteLine(convertedInput2);
+            }
             else
             {
-                Console.WriteLine("Invalid");
+                Console.WriteLine("even");
             }
                 
 
