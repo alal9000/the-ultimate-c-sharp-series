@@ -4,31 +4,26 @@
     {
         static void Main(string[] args)
         {
-            Console.Write("Enter width of image: ");
-            var width = Console.ReadLine();
+            Console.Write("Enter speed limit: ");
+            var speedLimit = Console.ReadLine();
+            int convertedSpeedLimit = Convert.ToInt32(speedLimit);
 
-            int convertedWidth = Convert.ToInt32(width);
+            Console.Write("Enter speed of car: ");
+            var speed = Console.ReadLine();
+            int convertedSpeed = Convert.ToInt32(speed);
 
-            Console.Write("Enter height of image: ");
-            var height = Console.ReadLine();
-
-            int convertedHeight = Convert.ToInt32(height);
-
-            if (convertedWidth > convertedHeight)
+            if (convertedSpeed < convertedSpeedLimit)
+                Console.WriteLine("OK");
+            else if (convertedSpeed > convertedSpeedLimit)
             {
-                
-                Console.WriteLine("landscape");
-            }     
-            else if (convertedHeight > convertedWidth)
-            {
-                Console.WriteLine("Portrait");
+                int difference = convertedSpeed - convertedSpeedLimit;
+                int demeritPoints = difference / 5;
+
+                var result = demeritPoints >= 12 ? "suspended" : Convert.ToString(demeritPoints);
+                Console.WriteLine(result);
             }
             else
-            {
                 Console.WriteLine("even");
-            }
-                
-
         }
     }
 }
