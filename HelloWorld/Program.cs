@@ -4,12 +4,24 @@
     {
         static void Main(string[] args)
         {
-            int count = 0;
-            for (int i = 1; i <= 100; i++)
-                if (i % 3 == 0)
-                    count++;
-            Console.WriteLine(count);
+            int total = 0;
+            while (true)
+            {
                 
+                Console.Write("enter a number: ");
+                var input = Console.ReadLine();
+
+                if (input == "ok") 
+                {
+                    break;
+                }
+
+                var result = Convert.ToInt32(input);
+                total += result;
+                Console.WriteLine(total);
+
+            }
+            
         }
     }
 }
