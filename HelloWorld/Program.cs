@@ -1,48 +1,38 @@
-﻿namespace HelloWorld
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace HelloWorld
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            var numbers = new[] { 3, 7, 9, 2, 14, 6 };
+            var numbers = new List<int>() { 1, 2, 3, 4 };
+            numbers.Add(1);
+            numbers.AddRange(new int[3] { 5, 6, 7 });
 
-            // Length
-            Console.WriteLine("Length: " + numbers.Length);
-
-            // IndexOf()
-            var index = Array.IndexOf(numbers, 9);
-            Console.WriteLine("Index of 9: " + index);
-
-            // Clear()
-            Array.Clear(numbers, 0, 2);
-
-            Console.WriteLine("Effect of clear()");
             foreach (var number in numbers)
             {
                 Console.WriteLine(number);
             }
 
-            // Copy()
-            int[] another = new int[3];
-            Array.Copy(numbers, another, 3);
+            Console.WriteLine();
+            Console.WriteLine("Index of 1: " + numbers.IndexOf(1));
+            Console.WriteLine("Index of 1: " + numbers.LastIndexOf(1));
 
-            Console.WriteLine("Effect of copy");
-            foreach(var n in another)
-                Console.WriteLine(n);
+            Console.WriteLine("Count: " + numbers.Count);
 
-            // Sort()
-            Array.Sort(numbers);
+            for (var i = 0; i < numbers.Count; i++)
+            {
+                if (numbers[i] == 1)
+                    numbers.Remove(numbers[i]);
+            }
 
-            Console.WriteLine("Effect of Sort()");
-            foreach( var n in numbers)
-                Console.WriteLine(n);
-
-            // Reverse()
-            Array.Reverse(numbers);
-
-            Console.WriteLine("Effect of Reverse()");
-            foreach(var number in numbers)
+            foreach (var number in numbers)
                 Console.WriteLine(number);
+
+            numbers.Clear();
+            Console.WriteLine("Count: " + numbers.Count);
+
 
         }
     }
