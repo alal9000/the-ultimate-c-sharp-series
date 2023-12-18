@@ -1,31 +1,22 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace HelloWorld
+﻿namespace HelloWorld
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            var secretNumber = new Random().Next(1, 11);
-            Console.WriteLine(secretNumber);
+            Console.Write("Enter a number: ");
+            var input = Console.ReadLine();
+            var conversion = Convert.ToInt32(input);
 
-            var input = "";
-            var convertedInput = 0;
-            int count = 0;
-            while (count < 4) 
+            int total = 1;
+            for (int i = conversion; i > 0; i--)
             {
-                Console.Write("Pick a number: ");
-                input = Console.ReadLine();
-                convertedInput = Convert.ToInt32(input);
-                Console.WriteLine(convertedInput);
-
-                if (convertedInput == secretNumber)
-                    break;
-
-                count++;   
+                total = i * total;
             }
-            var result = (convertedInput != secretNumber) ? "lost" : "won";
+            
+            var result = String.Format("{0}! = {1}", input, total);
             Console.WriteLine(result);
+
         }
     }
 }
