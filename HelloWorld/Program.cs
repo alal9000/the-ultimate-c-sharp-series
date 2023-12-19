@@ -4,18 +4,26 @@
     {
         static void Main(string[] args)
         {
-            Console.Write("Enter a number: ");
-            var input = Console.ReadLine();
-            var conversion = Convert.ToInt32(input);
-
-            int total = 1;
-            for (int i = conversion; i > 0; i--)
-            {
-                total = i * total;
-            }
+            var namesList = new List<string>();
             
-            var result = String.Format("{0}! = {1}", input, total);
-            Console.WriteLine(result);
+
+            var input = " ";
+            while (input != "")
+            {
+                Console.Write("Enter different names: ");
+                input = Console.ReadLine();
+                if (input != "")
+                    namesList.Add(input);
+
+            }
+            if (namesList.Count == 0)
+                Console.WriteLine("");
+            else if (namesList.Count == 1) 
+                Console.WriteLine(namesList[0] + " " + "likes your post");
+            else if (namesList.Count == 2)
+                Console.WriteLine(namesList[0] + " and " + namesList[1] + " likes your post");
+            else
+                Console.WriteLine(namesList[0] + " and " + namesList[1] + " and " + (namesList.Count - 2) + " others likes your post");
 
         }
     }
