@@ -4,48 +4,31 @@
     {
         static void Main(string[] args)
         {
-            //Console.Write("Enter width of image: ");
-            //var width = Console.ReadLine();
+            Console.WriteLine("Enter number between 1 and 10");
+            var input = Console.ReadLine();
 
-            //int convertedWidth = Convert.ToInt32(width);
+            int convertedInput = Convert.ToInt32(input); // try to be consistent with variable conventions and change int to var here
 
-            //Console.Write("Enter height of image: ");
-            //var height = Console.ReadLine();
+            if (convertedInput > 0 && convertedInput < 11) // by making the condition (number >= 1 && number <= 10) makes your code slightly more readable
+            {
+                Console.WriteLine("Valid"); // we can remove curly braces to reduce an extra 4 lines of code as we only have one expression here 
+            }
+            else
+            {
+                Console.WriteLine("Invalid");
+            }
 
-            //int convertedHeight = Convert.ToInt32(height);
 
-            //if (convertedWidth > convertedHeight)
-            //{
-
-            //    Console.WriteLine("landscape");
-            //}
-            //else if (convertedHeight > convertedWidth)
-            //{
-            //    Console.WriteLine("Portrait");
-            //}
+            // mosh solution
+            //Console.Write("Enter a number between 1 to 10: ");
+            //var input = Console.ReadLine();
+            //var number = Convert.ToInt32(input);
+            //if (number >= 1 && number <= 10)
+            //    Console.WriteLine("Valid");
             //else
-            //{
-            //    Console.WriteLine("even");
-            //}
-
-            //mosh solution
-            Console.Write("Image width: ");
-            var width = Convert.ToInt32(Console.ReadLine());
-
-            Console.Write("Image height: ");
-            var height = Convert.ToInt32(Console.ReadLine());
-
-            var orientation = width > height ? ImageOrientation.Landscape : ImageOrientation.Portrait;
-            Console.WriteLine("Image orientation is " + orientation);
-
-                
+            //    Console.WriteLine("Invalid");
 
 
-        }
-        public enum ImageOrientation
-        {
-            Landscape,
-            Portrait
         }
     }
 }
