@@ -4,40 +4,45 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter a number: ");
-            var input1 = Console.ReadLine();
+            Console.Write("Enter speed limit: ");
+            var speedLimit = Console.ReadLine();
+            int convertedSpeedLimit = Convert.ToInt32(speedLimit);
 
-            int convertedInput1 = Convert.ToInt32(input1);
+            Console.Write("Enter speed of car: ");
+            var speed = Console.ReadLine();
+            int convertedSpeed = Convert.ToInt32(speed);
 
-            Console.WriteLine("Enter another number: ");
-            var input2 = Console.ReadLine();
-
-            int convertedInput2 = Convert.ToInt32(input2);
-
-            if (convertedInput1 > convertedInput2)
+            if (convertedSpeed < convertedSpeedLimit)
+                Console.WriteLine("OK");
+            else if (convertedSpeed > convertedSpeedLimit)
             {
-                Console.WriteLine(convertedInput1);
-            }
-            else if (convertedInput2 > convertedInput1)
-            {
-                Console.WriteLine(convertedInput2);
+                int difference = convertedSpeed - convertedSpeedLimit;
+                int demeritPoints = difference / 5;
+
+                var result = demeritPoints >= 12 ? "suspended" : Convert.ToString(demeritPoints);
+                Console.WriteLine(result);
             }
             else
-            {
                 Console.WriteLine("even");
-            }
 
             // mosh solution
-            //Console.Write("Enter a number: ");
-            //var number1 = Convert.ToInt32(Console.ReadLine());
+            //Console.Write("What is the speed limit? ");
+            //var speedLimit = Convert.ToInt32(Console.ReadLine());
 
-            //Console.Write("Enter another number: ");
-            //var number2 = Convert.ToInt32(Console.ReadLine());
+            //Console.Write("What is the speed of this car? ");
+            //var carSpeed = Convert.ToInt32(Console.ReadLine());
 
-            //var max = (number1 > number2) ? number1 : number2;
-            //Console.WriteLine("Max is " + max);
-
-
+            //if (carSpeed < speedLimit)
+            //    Console.WriteLine("Ok");
+            //else
+            //{
+            //    const int kmPerDemeritPoint = 5;
+            //    var demeritPoints = (carSpeed - speedLimit) / kmPerDemeritPoint;
+            //    if (demeritPoints > 12)
+            //        Console.WriteLine("License Suspended");
+            //    else
+            //        Console.WriteLine("Demerit points: " + demeritPoints);
+            //}
         }
     }
 }
