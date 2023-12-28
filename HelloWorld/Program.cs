@@ -4,29 +4,38 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter number between 1 and 10");
-            var input = Console.ReadLine();
+            Console.WriteLine("Enter a number: ");
+            var input1 = Console.ReadLine();
 
-            int convertedInput = Convert.ToInt32(input); // try to be consistent with variable conventions and change int to var here
+            int convertedInput1 = Convert.ToInt32(input1);
 
-            if (convertedInput > 0 && convertedInput < 11) // by making the condition (number >= 1 && number <= 10) makes your code slightly more readable
+            Console.WriteLine("Enter another number: ");
+            var input2 = Console.ReadLine();
+
+            int convertedInput2 = Convert.ToInt32(input2);
+
+            if (convertedInput1 > convertedInput2)
             {
-                Console.WriteLine("Valid"); // we can remove curly braces to reduce an extra 4 lines of code as we only have one expression here 
+                Console.WriteLine(convertedInput1);
+            }
+            else if (convertedInput2 > convertedInput1)
+            {
+                Console.WriteLine(convertedInput2);
             }
             else
             {
-                Console.WriteLine("Invalid");
+                Console.WriteLine("even");
             }
 
-
             // mosh solution
-            //Console.Write("Enter a number between 1 to 10: ");
-            //var input = Console.ReadLine();
-            //var number = Convert.ToInt32(input);
-            //if (number >= 1 && number <= 10)
-            //    Console.WriteLine("Valid");
-            //else
-            //    Console.WriteLine("Invalid");
+            //Console.Write("Enter a number: ");
+            //var number1 = Convert.ToInt32(Console.ReadLine());
+
+            //Console.Write("Enter another number: ");
+            //var number2 = Convert.ToInt32(Console.ReadLine());
+
+            //var max = (number1 > number2) ? number1 : number2;
+            //Console.WriteLine("Max is " + max);
 
 
         }
