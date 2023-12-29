@@ -4,45 +4,21 @@
     {
         static void Main(string[] args)
         {
-            Console.Write("Enter speed limit: ");
-            var speedLimit = Console.ReadLine();
-            int convertedSpeedLimit = Convert.ToInt32(speedLimit);
-
-            Console.Write("Enter speed of car: ");
-            var speed = Console.ReadLine();
-            int convertedSpeed = Convert.ToInt32(speed);
-
-            if (convertedSpeed < convertedSpeedLimit)
-                Console.WriteLine("OK");
-            else if (convertedSpeed > convertedSpeedLimit)
-            {
-                int difference = convertedSpeed - convertedSpeedLimit;
-                int demeritPoints = difference / 5;
-
-                var result = demeritPoints >= 12 ? "suspended" : Convert.ToString(demeritPoints);
-                Console.WriteLine(result);
-            }
-            else
-                Console.WriteLine("even");
+            int count = 0;
+            for (int i = 1; i <= 100; i++)
+                if (i % 3 == 0)
+                    count++;
+            Console.WriteLine(count);
 
             // mosh solution
-            //Console.Write("What is the speed limit? ");
-            //var speedLimit = Convert.ToInt32(Console.ReadLine());
-
-            //Console.Write("What is the speed of this car? ");
-            //var carSpeed = Convert.ToInt32(Console.ReadLine());
-
-            //if (carSpeed < speedLimit)
-            //    Console.WriteLine("Ok");
-            //else
+            //var count = 0;
+            //for (var i = 1; i <= 100; i++)
             //{
-            //    const int kmPerDemeritPoint = 5;
-            //    var demeritPoints = (carSpeed - speedLimit) / kmPerDemeritPoint;
-            //    if (demeritPoints > 12)
-            //        Console.WriteLine("License Suspended");
-            //    else
-            //        Console.WriteLine("Demerit points: " + demeritPoints);
+            //    if (i % 3 == 0)
+            //        count++;
             //}
+            //Console.WriteLine("There are {0} numbers divisible by 3 between 1 and 100.", count);
+
         }
     }
 }
