@@ -1,32 +1,50 @@
-﻿namespace HelloWorld
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace HelloWorld
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.Write("Enter a number: ");
-            var input = Console.ReadLine();
-            var conversion = Convert.ToInt32(input);
+            var secretNumber = new Random().Next(1, 11);
+            Console.WriteLine(secretNumber);
 
-            int total = 1;
-            for (int i = conversion; i > 0; i--)
+            var input = "";
+            var convertedInput = 0;
+            int count = 0;
+            while (count < 4)
             {
-                total = i * total;
-            }
+                Console.Write("Pick a number: ");
+                input = Console.ReadLine();
+                convertedInput = Convert.ToInt32(input);
+                Console.WriteLine(convertedInput);
 
-            var result = String.Format("{0}! = {1}", input, total);
+                if (convertedInput == secretNumber)
+                    break;
+
+                count++;
+            }
+            var result = (convertedInput != secretNumber) ? "lost" : "won";
             Console.WriteLine(result);
 
             // mosh solution
-            //Console.Write("Enter a number: ");
-            //var number = Convert.ToInt32(Console.ReadLine());
 
-            //var factorial = 1;
-            //for (var i = 1; i <= number; i++)
-            //    factorial *= i;
+            //var number = new Random().Next(1, 10);
 
-            //Console.WriteLine("{0}! = {1}", number, factorial);
+            //Console.WriteLine("Secret is " + number);
+            //for (var i = 0; i < 4; i++)
+            //{
+            //    Console.Write("Guess the secret number: ");
+            //    var guess = Convert.ToInt32(Console.ReadLine());
 
+            //    if (guess == number)
+            //    {
+            //        Console.WriteLine("You won!");
+            //        return;
+            //    }
+            //}
+            
+            //Console.WriteLine("You lost!");
         }
     }
 }
