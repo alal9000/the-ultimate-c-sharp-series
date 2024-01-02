@@ -6,45 +6,24 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            var secretNumber = new Random().Next(1, 11);
-            Console.WriteLine(secretNumber);
+            // mosh solution - I didn't attempt this one
 
-            var input = "";
-            var convertedInput = 0;
-            int count = 0;
-            while (count < 4)
+            Console.Write("Enter commoa separated numbers: ");
+            var input = Console.ReadLine();
+
+            var numbers = input.Split(',');
+
+            // Assume the first number is the max 
+            var max = Convert.ToInt32(numbers[0]);
+
+            foreach (var str in numbers)
             {
-                Console.Write("Pick a number: ");
-                input = Console.ReadLine();
-                convertedInput = Convert.ToInt32(input);
-                Console.WriteLine(convertedInput);
-
-                if (convertedInput == secretNumber)
-                    break;
-
-                count++;
+                var number = Convert.ToInt32(str);
+                if (number > max)
+                    max = number;
             }
-            var result = (convertedInput != secretNumber) ? "lost" : "won";
-            Console.WriteLine(result);
 
-            // mosh solution
-
-            //var number = new Random().Next(1, 10);
-
-            //Console.WriteLine("Secret is " + number);
-            //for (var i = 0; i < 4; i++)
-            //{
-            //    Console.Write("Guess the secret number: ");
-            //    var guess = Convert.ToInt32(Console.ReadLine());
-
-            //    if (guess == number)
-            //    {
-            //        Console.WriteLine("You won!");
-            //        return;
-            //    }
-            //}
-            
-            //Console.WriteLine("You lost!");
+            Console.WriteLine("Max is " + max);
         }
     }
 }
