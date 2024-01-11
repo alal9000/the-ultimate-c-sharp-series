@@ -7,23 +7,17 @@ namespace HelloWorld
         
         static void Main(string[] args)
         {
-            Directory.CreateDirectory(@"c:\temp\folder1");
+            var path = @"c:\Users\aaron\functions.php";
 
-            //var files = Directory.GetFiles(@"c:\Users\aaron", "*.sln");
+            var dotIndex = path.IndexOf('.');
+            var extension = path.Substring(dotIndex);
 
-            //foreach (var item in files)
-            //    Console.WriteLine(item);
+            Console.WriteLine("Path: " + Path.GetExtension(path));
+            Console.WriteLine("File name: " + Path.GetFileName(path));
+            Console.WriteLine("File name: " + Path.GetFileNameWithoutExtension(path));
+            Console.WriteLine("Directory name: " + Path.GetDirectoryName(path));
 
-            var directories = Directory.GetDirectories(@"c:\Users\aaron", "*.*", SearchOption.AllDirectories);
 
-            foreach (var item in directories)       
-                Console.WriteLine(item);
-
-            Directory.Exists("...");
-
-            var diretoryInfo = new DirectoryInfo("...");
-            diretoryInfo.GetFiles();
-            diretoryInfo.GetDirectories();
 
         }
         
