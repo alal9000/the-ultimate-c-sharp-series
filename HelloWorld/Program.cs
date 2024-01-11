@@ -4,22 +4,42 @@ namespace HelloWorld
 {
     internal class Program
     {
-        
-        static void Main(string[] args)
+
+        public static void Main(string[] args)
         {
-            var path = @"c:\Users\aaron\functions.php";
+            var numbers = new List<int> { 1, 2 };
+            var smallests = GetSmallests(numbers, 3);
 
-            var dotIndex = path.IndexOf('.');
-            var extension = path.Substring(dotIndex);
-
-            Console.WriteLine("Path: " + Path.GetExtension(path));
-            Console.WriteLine("File name: " + Path.GetFileName(path));
-            Console.WriteLine("File name: " + Path.GetFileNameWithoutExtension(path));
-            Console.WriteLine("Directory name: " + Path.GetDirectoryName(path));
-
-
-
+            foreach (var number in smallests)
+                Console.WriteLine(number);
         }
-        
+
+        public static List<int> GetSmallests(List<int> list, int count)
+        {
+            var buffer = new List<int>(list);
+            var smallests = new List<int>();
+
+            while (smallests.Count < count)
+            {
+                var min = GetSmallest(buffer);
+                smallests.Add(min);
+                buffer.Remove(min);
+            }
+
+            return smallests;
+        }
+
+        public static int GetSmallest(List<int> list)
+        {
+            // Assume the first number is the smallest
+            var min = list[0];
+            for (var i = 1; i < list.Count; i++)
+            {
+                if (list[i] < min)
+                    min = list[i];
+            }
+            return min;
+        }
+
     }
 }
