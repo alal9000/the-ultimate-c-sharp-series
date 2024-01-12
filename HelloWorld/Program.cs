@@ -1,43 +1,50 @@
-﻿namespace HelloWorld
+﻿using System.Text;
+
+namespace HelloWorld
 {
     internal class Program
     {
-        static void Main(string[] args)
+
+        public static void Main(string[] args)
         {
-            ex2();
+            var numbers = new List<int>();
+            var smallests = GetSmallests(null, 1);
+
+            foreach (var number in smallests)
+                Console.WriteLine(number);
         }
 
-        public static void ex1()
+        public static List<int> GetSmallests(List<int> list, int count)
         {
-            var path = @"c:\users\aaron\words.txt";
-            var content = File.ReadAllText(path);
+            if (list == null)
+                throw new ArgumentNullException("list");
 
-            var charCount = 0;
-            foreach (var ch in content)
+            if (count > list.Count || count <= 0)
+                throw new ArgumentOutOfRangeException("count", "count should be between 1 and the number of elements in the list");
+
+            var buffer = new List<int>(list);
+            var smallests = new List<int>();
+
+            while (smallests.Count < count)
             {
-                if (ch == ' ')
-                    charCount++;
-
+                var min = GetSmallest(buffer);
+                smallests.Add(min);
+                buffer.Remove(min);
             }
-            Console.WriteLine(charCount + 1);
+
+            return smallests;
         }
 
-        public static void ex2()
+        public static int GetSmallest(List<int> list)
         {
-            var path = @"c:\users\aaron\words.txt";
-            var content = File.ReadAllText(path);
-
-            var wordArray = content.Split(" ");
-
-            
-            var longest = "";
-            foreach (var word in wordArray)
+            // Assume the first number is the smallest
+            var min = list[0];
+            for (var i = 1; i < list.Count; i++)
             {
-                if (word.Length > longest.Length)
-                    longest = word;
-
+                if (list[i] < min)
+                    min = list[i];
             }
-            Console.WriteLine(longest);
+            return min;
         }
 
     }
