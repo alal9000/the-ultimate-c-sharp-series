@@ -1,6 +1,6 @@
 ﻿namespace HelloWorld
 {
-    public class Person
+    public class PersonFirst
     {
         public string firstName;
         public string lastName;
