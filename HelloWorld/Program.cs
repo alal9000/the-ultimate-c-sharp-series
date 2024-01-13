@@ -1,19 +1,22 @@
 ﻿namespace HelloWorld
 {
-
     internal class Program
     {
+        public class Person
+        {
+            public int Id;
+            public string FirstName;
+            public string LastName;
+            public DateTime Birthdate;
+        }
 
         public static void Main(string[] args)
         {
-            var customer = new Customer(1, "john");
-
-            var order = new Order();
-            customer.Orders.Add(order);
-
-            Console.WriteLine(customer.Id);
-            Console.WriteLine(customer.Name);
+            var person = new Person
+            {
+                FirstName = "Mosh",
+                LastName = "Hamedani"
+            };
         }
-
     }
 }
