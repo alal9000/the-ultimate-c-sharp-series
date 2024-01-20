@@ -1,4 +1,6 @@
 ﻿
+using Amazon;
+
 namespace HelloWorld
 {
 
@@ -7,14 +9,8 @@ namespace HelloWorld
         
         public static void Main(string[] args)
         {
-            var dbMigrator = new DbMigrator(new Logger());
-
-            var logger = new Logger();
-            var installer = new Installer(logger);
-
-            dbMigrator.Migrate();
-
-            installer.Install();
+            var customer = new Customer2();
+            Amazon.RateCalculator calculator = new Amazon.RateCalculator();
         }
     }
 }
