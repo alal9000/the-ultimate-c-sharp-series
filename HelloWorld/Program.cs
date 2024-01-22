@@ -1,7 +1,4 @@
-﻿
-using Amazon;
-
-namespace HelloWorld
+﻿namespace HelloWorld
 {
 
     internal partial class Program
@@ -9,8 +6,7 @@ namespace HelloWorld
         
         public static void Main(string[] args)
         {
-            var customer = new Customer2();
-            Amazon.RateCalculator calculator = new Amazon.RateCalculator();
+            var car = new Car("xyz123");
         }
     }
 }
