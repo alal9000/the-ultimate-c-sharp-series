@@ -9,8 +9,14 @@ namespace HelloWorld
         
         public static void Main(string[] args)
         {
-            Shape shape = new Text1();
-            Text1 text = (Text1) shape; 
+            var list = new ArrayList();
+            list.Add(1);
+            list.Add("mosh");
+            list.Add(DateTime.Today);
+
+            var anotherList = new List<int>();
+            var names = new List<string>();
+            names.Add()
 
         }
     }
