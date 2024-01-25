@@ -9,14 +9,12 @@ namespace HelloWorld
         
         public static void Main(string[] args)
         {
-            var list = new ArrayList();
-            list.Add(1);
-            list.Add("mosh");
-            list.Add(DateTime.Today);
+            var shapes = new List<Shape>();
+            shapes.Add(new Circle());
+            shapes.Add(new Rectangle());
 
-            var anotherList = new List<int>();
-            var names = new List<string>();
-            names.Add()
+            var canvas = new Canvas();
+            canvas.DrawShapes(shapes);
 
         }
     }
