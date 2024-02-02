@@ -1,7 +1,6 @@
-﻿using System.Collections;
-
-namespace HelloWorld
+﻿namespace HelloWorld
 {
+
 
     internal partial class Program
     {
@@ -9,13 +8,8 @@ namespace HelloWorld
         
         public static void Main(string[] args)
         {
-            //var shape = new Shape2();
-            
-            var circle = new Circle();
-            circle.Draw();
-
-            var rectangle = new Rectangle();
-            rectangle.Draw();   
+            var dbMigrator = new DbMigrator1(new FileLogger("C:\\Projects\\log.txt"));
+            dbMigrator.Migrate();
         }
     }
 }
