@@ -7,18 +7,15 @@
         
         public static void Main(string[] args)
         {
-            //number => number * number
+            var video = new Video() { Title = "Video 1" };
+            var videoEncoder = new VideoEncoder(); // publisher
+            var mailService = new MailService(); // subscriber
+            var messageService = new MessageService(); // subscriber
 
-            const int factor = 5;
+            videoEncoder.VideoEncoded += mailService.OnVideoEncoded;
+            videoEncoder.VideoEncoded += messageService.OnVideoEncoded;
 
-            Func<int, int> multipler = n => n*factor;
-
-            var result = multipler(10);
-            Console.WriteLine(result);
-
-            Func<int, int> square = number => number * number;
-
-            //Console.WriteLine(square(5));
+            videoEncoder.Encode(video);
         }
     }
 }
