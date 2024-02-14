@@ -7,15 +7,13 @@
         
         public static void Main(string[] args)
         {
-            var video = new Video() { Title = "Video 1" };
-            var videoEncoder = new VideoEncoder(); // publisher
-            var mailService = new MailService(); // subscriber
-            var messageService = new MessageService(); // subscriber
+            string post = "This is supposed to be a very long blog post blah blah blah...";
+            var shortenedPost = post.Shorten(5);
 
-            videoEncoder.VideoEncoded += mailService.OnVideoEncoded;
-            videoEncoder.VideoEncoded += messageService.OnVideoEncoded;
+            IEnumerable<int> numbers = new List<int>() { 1, 5, 3, 10, 2, 18 };
+            var max = numbers.Max();
 
-            videoEncoder.Encode(video);
+            Console.WriteLine(max);
         }
     }
 }
