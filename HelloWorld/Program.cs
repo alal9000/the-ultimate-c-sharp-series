@@ -7,54 +7,25 @@
         
         public static void Main(string[] args)
         {
-            var books = new BookRepository().GetBooks();
+            DateTime? date = null;
+            DateTime date2 = date ?? DateTime.Today;
 
-            // LINQ Query Operators
-            //var cheaperBooks = from b in books
-            //                   where b.Price < 10
-            //                   orderby b.Title
-            //                   select b.Title;
+            DateTime date3 = (date != null) ? date.GetValueOrDefault() : DateTime.Today;
 
-            // LINQ Extention Methods
-            var totalPrices = books.Sum(b => b.Price);
+            //if (date != null)
+            //    date2 = date.GetValueOrDefault();
+            //else 
+            //    date2 = DateTime.Today;
 
-            Console.WriteLine(totalPrices);
+            //Console.WriteLine(date2);
 
-            //books.Where();
-            //books.Single();
-            //books.SingleOrDefault();
+            //DateTime? date3 = date2;
 
-            //books.First();
-            //books.FirstOrDefault();
+            //Console.WriteLine(date3.GetValueOrDefault());
 
-            //books.Last();
-            //books.LastOrDefault();
-
-            //books.Min();
-            //books.Max();
-            //books.Count();
-            //books.Sum();
-            //books.Average(b => b.Price);
-
-            //books.Skip(5).Take(3);
-
-
-
-
-
-
-
-            //var cheapBooks = books
-            //                    .Where(b => b.Price < 10)
-            //                    .OrderBy(b => b.Title)
-            //                    .Select(b => b.Title);
-
-
-
-            //foreach (var book in cheapBooks)
-            //    Console.WriteLine(book);
-
-            //Console.WriteLine(book.Title + " " + book.Price);
+            //Console.WriteLine("GetValueOrDefault: " + date.GetValueOrDefault());
+            //Console.WriteLine("HasValue: " + date.HasValue);
+            //Console.WriteLine("Value: " + date.Value);
         }
     }
 }
