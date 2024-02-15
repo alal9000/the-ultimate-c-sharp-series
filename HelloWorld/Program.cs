@@ -7,13 +7,54 @@
         
         public static void Main(string[] args)
         {
-            string post = "This is supposed to be a very long blog post blah blah blah...";
-            var shortenedPost = post.Shorten(5);
+            var books = new BookRepository().GetBooks();
 
-            IEnumerable<int> numbers = new List<int>() { 1, 5, 3, 10, 2, 18 };
-            var max = numbers.Max();
+            // LINQ Query Operators
+            //var cheaperBooks = from b in books
+            //                   where b.Price < 10
+            //                   orderby b.Title
+            //                   select b.Title;
 
-            Console.WriteLine(max);
+            // LINQ Extention Methods
+            var totalPrices = books.Sum(b => b.Price);
+
+            Console.WriteLine(totalPrices);
+
+            //books.Where();
+            //books.Single();
+            //books.SingleOrDefault();
+
+            //books.First();
+            //books.FirstOrDefault();
+
+            //books.Last();
+            //books.LastOrDefault();
+
+            //books.Min();
+            //books.Max();
+            //books.Count();
+            //books.Sum();
+            //books.Average(b => b.Price);
+
+            //books.Skip(5).Take(3);
+
+
+
+
+
+
+
+            //var cheapBooks = books
+            //                    .Where(b => b.Price < 10)
+            //                    .OrderBy(b => b.Title)
+            //                    .Select(b => b.Title);
+
+
+
+            //foreach (var book in cheapBooks)
+            //    Console.WriteLine(book);
+
+            //Console.WriteLine(book.Title + " " + book.Price);
         }
     }
 }
