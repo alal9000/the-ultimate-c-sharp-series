@@ -7,25 +7,26 @@
         
         public static void Main(string[] args)
         {
-            DateTime? date = null;
-            DateTime date2 = date ?? DateTime.Today;
+            //object obj = "Mosh";
+            //// obj.GetHashCode();
 
-            DateTime date3 = (date != null) ? date.GetValueOrDefault() : DateTime.Today;
+            //var methodInfo = obj.GetType().GetMethod("GetHashCode");
+            //methodInfo.Invoke(null, null);
 
-            //if (date != null)
-            //    date2 = date.GetValueOrDefault();
-            //else 
-            //    date2 = DateTime.Today;
+            //dynamic excelObject = "Mosh";
+            //excelObject.Optimize();
 
-            //Console.WriteLine(date2);
+            //dynamic name = "Mosh";
+            //name++;
 
-            //DateTime? date3 = date2;
+            //dynamic a = 10;
+            //dynamic b = 5;
+            //var c = a + b;
 
-            //Console.WriteLine(date3.GetValueOrDefault());
+            int i = 5;
+            dynamic d = i;
+            long l = d;
 
-            //Console.WriteLine("GetValueOrDefault: " + date.GetValueOrDefault());
-            //Console.WriteLine("HasValue: " + date.HasValue);
-            //Console.WriteLine("Value: " + date.Value);
         }
     }
 }
