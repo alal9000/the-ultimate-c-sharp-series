@@ -7,26 +7,35 @@
         
         public static void Main(string[] args)
         {
-            //object obj = "Mosh";
-            //// obj.GetHashCode();
+            try
+            {
+                var api = new YouTubeApi();
+                var videos = api.GetVideos("Mosh");
+                //using(var streamReader = new StreamReader(@"c:\file.zip"))
+                //{
+                //    var content = streamReader.ReadToEnd();
+                //}
+                //var calculator = new Calculator1();
+                //var result = calculator.Divide(5, 0);
+                //throw new Exception("Oops");
+            }
+            //catch (DivideByZeroException ex)
+            //{
+            //    Console.WriteLine("You cannot divide by 0");
+            //}
+            //catch (ArithmeticException ex)
+            //{
 
-            //var methodInfo = obj.GetType().GetMethod("GetHashCode");
-            //methodInfo.Invoke(null, null);
-
-            //dynamic excelObject = "Mosh";
-            //excelObject.Optimize();
-
-            //dynamic name = "Mosh";
-            //name++;
-
-            //dynamic a = 10;
-            //dynamic b = 5;
-            //var c = a + b;
-
-            int i = 5;
-            dynamic d = i;
-            long l = d;
-
+            //}
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            //finally
+            //{
+            //    if (streamReader != null)
+            //        streamReader.Dispose();
+            //}
         }
     }
 }
