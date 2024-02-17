@@ -1,0 +1,151 @@
+-class is a building block of a software application
+-in a real world app we should not declare fields with public
+-instance members: accessible from the object
+-static members: accessible from the class
+-why use static members: to represent concepts that are singleton - which means we should have one instance of that concept in the memory ie: DateTime.Now - doesn't make sense for many objects to hold the current datetime as a field, its a waste of memory so it can just be accessed on the object
+-parsing is when you analyse / process a string
+-constructor: a method that is called when an instance of a class is created which initialises the fields for that object - we do this to put the object in an early state.
+-A constructor must have the same name as the class with parethesis added on the end
+-constructors do not have a return type (not even void) and cant be static. They only include an access modifer, the class name and parethesis
+-a default constructor has no parameters - if we dont provide a constructor for our class then the c# compiler will automatically create a default constructor - that constructor does not do anything except initialize the fields of the class to their default values - these default values are 0 for numbers, empty character for characters, false for boolean values and null for reference types like string and any other types of objects
+-the this keyword references the current object
+-a signature is what uniquely identifies a method - its return type, its name, types and number of parameters (note that parameter names dont matter)
+-constructors can be overloaded just like methods - which means they can have the same name but different signatures
+-as a soon as we define our own custom contructors, the compiler will no longer create the default (parameterless) constructor
+-we only use contructors in classes in situations where we really want to initialize that object to an early state - its really important to initialize this early state for the object to perform
+-as a rule of thumb / best practice - whenever you have a class that has a list of objects ie: private List<Order> Orders; always initialize that list to an empty list - otherwise its possible we can get a null reference exception when it comes time to use the List in our code
+-if you see this syntax: : this() after a constructor it means the default constructor will be called first before the references contructor. We can use the this keyword to specify any of the other constuctors we would like to pass the control to. In general though this is not considered a good practice because it makes the control flow a little bit complicated, so keep the using of this() in this way to a minimum
+-only define a contructor when you really have to initialize some fields of your class - ie: an object can't behave without being passed some initial values
+-object initializers: another way to initialize an object. A syntax for quickly initializing an object without the need to call one of its constructors - we use them to avoid creating multiple constructors
+-overloading goes hand in hand with signatures and it means having a method with the same name but different signatures
+-if we have situations where our methods might need a varying number of parameters, we can use the params modifer to make it easier for the consumer of that method to call that method - params allow us to pass a varying number of arguments, ie: public int Add(params int[] numbers) {}
+-the Ref and Out modifiers are not used often and are considered by many devs as code smells
+-the ref modifer essentially allow you to pass by reference and not value in your methods
+-overloads make it easier for the caller of the method to pass arguments to the method as there is a variety of available arguments to pass ie: for a point the caller may have two ints if not they can pass a Point object instead
+-exceptions are .nets way of error reporting - so exceptions are a way to report errors to a caller of a method - exceptions are just classes and we just instantiate that class when we throw an exception ie: throw new ArgumentNullException("newLocation");
+-we should validate input for null, out of range, 0 or empty string (common corner cases) - these values can put our app in an invalid state and can lead to weird behaviour down the track - the idea behind defensive programming is to stop your program for getting into that invalid state
+-we dont want to write apps that crash, no one likes that - thats why we use try / catch with defensive programming
+-a field is like a variable that we declare at the class level and we use that to store data about the class
+-we can declare a field with the read only modifier to make sure that field is only assigned once either directly in the class or in the constructor. The reason we do this is to create safety in our app ie when we dont want to overwrite the field
+-in C# we have 5 access modifiers: public, private, protected, internal and protected internal
+-access modifer: way to control access to a class and / or its members - we need them to create safety in our programs
+-OOP: encapsulaton / information hiding, inheritance, polymorphism
+-we want to design our classes so they focus on doing one thing, have one responsibility - this is why we want to hide fields of a method, so other classes can't access them because its not part of their responsibility. Fields are implemention detail of a class so they should be invisible from the outside
+-encapsulation: we want to define methods as private and provide getter and setter methods as public
+-we have two naming conventions in C# camel and pascal case. Private fields should have an underline and be camel case ie: _name; - we use pascal case for classes and its methods
+-if you see or hear the word alogrithm, think about the term instructions
+-objects are about behaviour, about what they do, their feilds are primarily their internals, their implementation detail, which should be hidden from the outside, that why we hide them using private and use setter and getter methods to interact with them. The interfaces for objects would be super polluted if we made their fields public
+-property: class member that encapsulates a getter / setter for accessing a field. We use them to create a getter and setter with less code ie: public DateTime Birthdate { get { return _birthdate; } set {_birthdate = value; }} for field private DateTime _birthdate; 
+- we use pascal case for naming properties, basically everything in a class is pascal case except private fields and method parameters which are camel case
+-auto-implemented properties are syntactic sugar for properties which automatically create a private field ie: public DateTime Birthdate { get; set; } 
+- if we dont want the set method to be accessible we prefix with the private keyword which makes the method readonly. Then the only place the field can be set is in the constructor - we do this to make sure our class is always in a valid state ie: someone can't come along and mistakenly set a field when it should be computed only from a constructor 
+-the job of a constructor, its purpose it to initialize the fields of an object / class to an early state - it sets all the fields of the object / class to its default values
+-when we subtract two datetime objects we get a timespan (a duration)
+-get and set methods are called accessors
+-by convention auto implemented properties go on the top followed by space then our constructors, followed by sapce and then any calculated properties (properties with logic)
+-indexers: a way to acess elements in a class that represents a list of values. We use square brackets to implement an indexer - its syntax is similar to a property except we use the this keyword in place of an identifier and use square brackets instead of parethesis. If we are working with a class that has the semantics of a collection, list or dictionary we can improve our code by declaring an indexer, an indexer is an easier way to access elements in that collection
+-cookie: a small piece of data that is sent by the target webserver to your browser to 'remember' and identify the user. Once stored in the users browsers local storage as key value pairs, it gets sent to the webserver on each subsquent request to that webserver until the user clears the cookie or it expires. They are commonly used to store user information such as authentication details, preferences, session details, cart information etc.
+-stateful interactions: interactions where the web app maintains persistent state information about the user accross multiple requests or page views.
+-semantics refers to the meaning of statements and expressions within a language
+-dictionaries in C# is a data structure which uses a hash table to quickly look up values, so if you have a list of objects and want to look them up by a key as opposed to an index, then we should use a dictionary
+- we use the new operator when we want to allocate some memory for a reference type, ie when we create a new object
+-signature of a method consists of the number, type and order of its parameters
+-we can pass control from one contructor to another by using the this keyword
+-as a best practice anytime your class contains a list always initialize the list
+-pass by value / pass by reference. By default when we pass a value type to a method ie: int, char, bool, a copy of that variable is sent to the method so changes applied to that variable inside the method will not be visible on the variable upon return from the method.
+-the out modifer can be used to return multiple values from a method
+-we use access modifiers to hide the implementation detail of a class. It improves the robustness of our code so classes can't access and change another classes implementation details - because otherwise we would have unstable code
+-coupling: a measure of how interconnected classes and subsystems are
+-we should design loosely coupled apps so our changes dont cause cascading breaking changes
+-in general we have two types of relationships between classes: inheritance and composition - we favour composition relationships because they have less coupling
+-interfaces help us design loosely coupled apps
+-inheritance benefits: we can achieve polymorphic behaviour and code reuse. It is a kind of relationship and association between classes. We say has a 'is-a' relationship ie: a car is a vehicle 
+-in C# a class can only have one parent
+-the object class is the parent of all classes in dotnet - this is where the extra properties and methods in your objects are coming from
+-composition: another kind of relationship between two classes (like inheritance) that allows one class to contain another. We say has a 'has-a' relationship ie: Car has an engine
+-benefits of composition: code reuse, flexiblility and a means to loose coupling
+-for composition we dont have any special syntax like we have for inheritance - the related field is simply a private field in the composite class
+-in general inheritance results in a more tightly coupled relationship - composition has more loose coupling and flexibility - a lot of devs say favour composition over inheritance
+-any inheritance relationship can be translated into a composition
+-we should design our classes so a change in a class has minimal impact to other classes in the system
+-with composition we encapsulate some common functionality and then we compose them, or tie them together to create new classes - with composition a class can be composed of many other classes
+-just because we see relationships between classes in the real world doesn't mean we need to model them in the same way - we should think in terms of objects and build loosely coupled software because its easier to change
+-we want to hide implementation details to isolate changes to the class - because if other classes see and rely on these implementation details, changes to them can effect them in the future - it is to reduce coupling
+-private members are only accessible from the class its declared in
+-protected members are only accessible from the class its declared in and its derived classes ie: children - mosh advises to avoid if we can, only use if we have a valid reason as we reveal implemention detail to subclasses and use private and public methods 
+-internal modifer is only used with the classes and not their members - the class is only accessible from the same assembly (project)
+-protected internal: accessible only from the same assembly or any derived classes - mosh advises to avoid we should not need to use this
+-the more we reveal about the members of a class, the more we risk that other parts of the code will be dependant on those members - this creates more coupling - try to minimise the public interface for a class and not pollute its interface with too many members
+-encapsulation: hide the details inside and reveal the public interface
+-generally speaking its not a good practice to instantiate a class (create an object) inside the method of another class, as this can introduce coupling, this is where interfaces come into the picture
+-constructor inheritance: base class contructors are always executed first and are not inherited ie: we have to redefine the constructor in the derived class because its not inherited through its parent
+-default or parameter less contructors are the same thing
+-conversion: changing the types of objects
+-when you create an object, the contructor of the base class is always executed first
+-upcasting: conversion from a derived class to a base class - ie: child to parent
+-downcasting: conversion from a base class to a derived class - ie: parent to child
+-in C# upcasting is implicit so no converison is required - simply convert and object reference to its baseclass reference
+-downcasting we will need to do an explicit cast
+-we can use the as and is keywords to perform operations around casting
+-we use a FileStream object to work with a file, it has methods to read and write to a file
+-in real world apps we should not use the ArrayList class because its not a type safe list, we can store a different kind of object in every element - a better way is to use generic lists
+-generic classes take a parameter (input) which enforces a constraint on the type it can accept
+-we can use downcasting to convert an object to a more specific type in cases where the public interface is limited - upon which we can see more class members. We can do this through an explict cast or using the as keyword
+-all types in C# are divided into two types, value types and reference types - value types are stored on the stack which is a smaller more temporary memory and is automatically allocated by the runtime, it typically stores primitive types and have a short lifetime ie: byte, int, float, char, bool, struct - when they go out of scope they immediately get removed from the stack by the runtime
+-reference types are stored in the heap which is a larger amount of memory - we use it to store objects that require a longer lifetime - any classes are reference types
+-a runtime is an evironment or set of tools / programs for executing a program
+-boxing and unboxing in C#: values types can be converted to reference types and vice-versa - note it has a performance penalty as a new object reference has to be created on the stack to point to the object on the heap and is something we should avoid if possible - ie: ArrayList will implicity perform boxing so we should use generic classes where possible
+-if we are working with a class and call a method for that class that accepts a type 'object' and we pass a value type there, boxing will happen which will affect performance - so better to use a generic implementation of that class if it exisits
+-all objects can be implicity converted into a base class reference but downcasting requires a cast
+-method overriding means modifying the implementation of an inherited method - we use the virtual and override keywords to implement this. This can be used to implement polymorphic behaviour
+-polymorphism is associated with objects taking many forms at runtime such as when the type can be any derived class of the base class - even if we are dealing with a list of a base class the objects at runtime can be child classes depending on the implementation. By having this dynamic behaviour at runtime, the benefits of this is we have more loosely coupled apps, can avoid convulted and repeatative code and achieve better encapsulation by reducing redundency and increasing reuseability.
+
+-abstract modifier can be applied on classes and thier members and indicates that a class or member is missing implementation. Its used when the implementation should be done by the child class and not provided by the parent as the implementation of the method inside the parent class might be too abstract or hard to conceptualize or make tangible. abstract methods do not have a body.
+-when we declare a method as abstract we also need to declare the containing class as abstract too to declare its missing implementation and that implementation needs to be provided by its derived classes
+-abstract methods are inheritantly virtual and can provide polymorphic behaviour
+-rules of abstract members: no body or implementation, containing class must contain abstract keyword, the derived class implementation must be provided for all abstract members, abstract classes cannot be instantiated
+-why use abstract: when you want to provide some common behaviour, while enforcing other developers to follow your design - it helps to provide some safety, some guard so everyone follows the design
+-abstract methods and interfaces are similar in the way we don't provide implementations for methods
+-abstract modifer is not a tool you use everyday
+-sealed classes are the opposite of abstract class in that they: prevents derivation of classes or overriding of methods - can be applied to class or class members, to class, it prevents derivation and to method it blocks the overriding of that method - sealed is one of those features that are hardly ever used - mosh advises not to use it
+-we cannot inherit directly from the string class, if we want to extend it we need to use extension methods
+-method overriding allows us to achieve polymorphism - with polymorphism we can get rid of long conditional and switch statements
+-abstract modififer states that a class or member misses implementation - we use abstract members when it doesn't make sense to implement them in a base class ie: shape and circle - the concept of drawing a shape is too abstract - it needs to be implemented in the base class for it to make sense - in the derived classes, we need to override ALL the abstract members, not just some
+-in dotnet all interfaces start with I - they are similar to classes but act as a public contract for derived classes in terms of method signature. Their members do not have implementation (body and curly braces) and access modifiers
+-we use interfaces to build loosely coupled apps
+-when we build software we want our classes or components to be loosely related to each other - so if we decide to make a change in one class, it has 0 or minimal impact on other classes
+-C# attributes are decorators for classes and methods, they are just markers and have no implementation - they represent meta data about your classes and their members
+-in unit testing a class we need to isolate it, so we assume the other classes in the app is doing their jobs properly
+-to achieve loose coupling then the types of objects should be of the interface type not a concrete class, but instantiating a concrete class in the main method is ok ie: IShape circle = new Circle(); IShape square = new Square(); this is because its outside of the classes that are being implemented, classes should not know about each other in a concrete fashion rather only know about interfaces, in the main method however because it acts as a match maker, it can know about concrete classes because it does not rely on them to do its job. So concrete types should not know about the existance of other concrete types only interfaces
+-methods declared in an interface should be public - an interface provides the public service or functionality that a class should provide
+-when we create an instance of a class and there is no parenthesis and instead curly braces that is object initialization syntax ie: var order = new Order { Shipment = new Shipment()}
+-testing is about making assertions then testing if those assertions are satisfied
+-when trying to unit test your classes, if that class has other dependencies in terms of other concrete classes, then you can use an interface to reduce that coupling and isolate the class for testing
+-dependency injection: within the constructor of a class we can specify the dependency of that class
+-we can change the behvaiour of our app by simply swapping out classes instead of changing the code of the app - this is what we call changing the behaviour by extending the app instead of changing the code - in OOP this is called open / closed principal or OCP - which states software entities should be open for extension but closed for modification. ie: instead of changing existing code you should extend it - applying OCP often involves the use of abstraction and interfaces
+-interfaces are not used to implement multiple inheritance in C# - interfaces have nothing to do with inheritance in C#
+-in C# a class cannot have multiple base classes
+-an interface is simply a contract: its saying any classes that implement me should provide implementation (code body) for the methods declared inside me
+-interfaces are used for building loosely coupled, extensible and testable apps
+-interfaces do provide polymorphic behaviour
+-if we want to unit test a class we have to isolate it which means, have it talk to an interface rather than concrete classes
+-as SWE's we want to reduce the impact of change in our software
+-polymorphism: depending on the type at runtime, different methods will be called
+-an interface is simply a declaration of the capabilities that a class should provide - so an interface is purely a declaration, members of an interface do not have implementation.
+-an interface can only declare methods and properties but not fields (because fields are about implementation detail, thats why they private)
+-we say a class implements an interface
+-members of an interface do not have access modifiers
+-we reduce the coupling between two classes by putting an interface between them
+-unit testing is an automated practice which improves code quality
+-A class that has tight dependencies to other classes cannot be isolated - To solve this problem, we use an interface
+-we can use interfaces to change our apps behaviour by extending its code rather than changing the existing code
+
+=================================================================================
+
+-look at removing test and condense moshify 1 and 2 in git
+
+
+
+the quick brown fox jumped over the lazy dog
+the quick brown fox jumped over the lazy dog
+the quick brown fox jumped over the lazy dog

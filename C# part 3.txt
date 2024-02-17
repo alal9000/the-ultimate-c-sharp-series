@@ -1,0 +1,74 @@
+-Object is the parent of all classes in dotnet
+-with generics we create a class once and reuse it multiple times, we get code reuseability - it doesn;t have the performance penalty of using an Object class list for the same purpose
+-generics are best described by the problem it came to solve, where we had to create seperate classes to handle each specific type, ie: IntList, StringList - this is bad for repeating code and productivity - instead we define a generic class with a type parameter and pass in the type we want to use to the consumer of the class and that type will be used at runtime. ie: public class GenericList<T> {...} for defining and then for consuming - var numbers = new GenericList<int>();
+-most often we will be consuming the generic classes defined already in dotnet, mosh says he hardly ever has had to define his own generics in his apps
+-with generics we can also supply constraints which means restrict the type that can be passed in from the consumer of the class - ie: maybe we need the generic parameter to implement a specific interface ie: public T Max<T>(T a, T b) where T : IComparable { a.CompareTo(b) > 0 ? a : b; } - in this example we if the method was to return the higher of two params we cannot use a generic class because we would be comparing two objects and this is invalid
+-its fine to create a generic method inside a non generic class
+-different types of contraints for generics - interface (Where T : IComparable), class (Where T : Product), value type (Where T : struct), class (Where T : class) or default contructor(Where T : new())
+-value types in C# cannot be null, ie: an int should have a value like 0,1,2,3 it cannot be null
+-we can find the default value of a type by using the default operator ie: default(T)
+-we can add multiple constraints to a generic class by seperating with comma ie: public class Utilities<T> where T : IComparable, new() - then we can instanitate a new instance of T with the default constructor
+-a delegate is a reference to a function - its an object that knows how to call a method (or a group of methods)
+-we need delegates for designing extensible and flexible apps ie: frameworks
+-extensible applications have the benefit of not having to be recompiled and redeployed
+-a lambda expression is nothing but a anonymous method - it has no name, return statment and access modifier. We use them for convienience
+-syntax for lambda expression: args => expression - if we dont need args we use empty parethesis ie: () => ... if we have one arg we can use the arg by itself without using parethesis, two or more args we use parethesis
+-a predicate a function that returns a boolean
+-events is a mechanism for communication between objects - the object that emits the event is called the publisher or event sender, the object that subscribes to the event is called the subscriber or event receiver
+-events are used to build loosely coupled apps and helps to extend apps (add extra lines / capabilities without making breaking changes)
+-when we add extra lines of code and change a method, it has to be recompiled, which means is encapsulating class needs to be recompiled, which means any classes that rely/depend on that class has to be recompiled - in a production environment the classes that need to be recompiled also need to be redeployed - as SWE we want to reduce this problem, we want to design our apps such that when we want to make changes, that change has minimal impact on the overall app
+-we emit event by sending messages to subscribers, which mean invoking a method inside a subscriber (event handlers) - for this to happen we need an agreement or a contract between these subscribers. This event handler is the method called by the publisher when the event is raised
+-we use a delegate to tell the publisher which method to call to raise the event. It is a function / method which is an agreement / contract between publisher and subscriber, it determins the signature of the event handler method in the subscriber
+-to give a class the ability to publish an event we need to do three things: 1. define a delegate (contract / agreement between publisher and subscriber) which determins the signature of the method in the subscriber that will be called when the publisher raises an event, 2. define an event based on that delegate, 3. raise or publish the event
+-the convention in dotnet is that our event publisher methods should be protected virtual and return void ie: protected virtual void OnVideoEncoded() {} - in terms of naming they should start with the word 'On' and then the name of the event
+-we can also pass data about the events that happened with events and delegates in C#
+-we dont need to create our own custom delegates because there is an EventHandler type/class we can use for this purpose - regualr class for no additional data to be sent with the event and a generic version if we need to send extra data
+-a solution in C# is a container to hold multiple projects - each project within a solution can contain one or more source files
+-the EventHandler delegate that comes with dot net saves us from creating our own delegate, there is a normal and generic version of this type
+-extension methods: allow us to add methods to an existing class with changing its source code or creating a new class that inherits from it
+-we cannot inherit from the string class in C# it is sealed - in these types of situations we can add a new methods which inherits from the string class by using extension methods
+-extension methods are essentially static methods - but because of the specific syntax we use to declare them we can use the method on an instance object - microsoft says use extension methods only when you really have to.. because if there are changes made to the classes you are inheriting from it could cause unexpected behaviour - in the real world most often we would be using extension methods rather than creating them
+-a variable type can be an interface ie: IEnumerable<object> numbers = new List<int>(); - here the type of numbers here is an IEnumerable interface of object, this is useful if we want to reassign numbers later to a List of another type ie: numbers = new List<string>() { "3", "6", "9", "12" }; - this would be valid C#
+-object initializer syntax we can initialize within curly braces ie: IEnumerable<int> numbers = new List<int>() { 1, 5, 3, 10, 2, 18 };
+-LINQ: Language integrated query - it gives us the ability to query objects in C# natively ie: in memory (LINQ to objects), databases (LINQ to entities), xml (LINQ to XML), .net data sets (LINQ to data sets)
+-a predicate is a function that takes an input and returns a boolean value indicating whether the input satisfies a certain condition or not - often these are passed into other functions to filter a collection by adding an element to a new collection if it satisfies a specified critera - ie: the filter method in  JS
+-there are two primary approaches for querying data: LINQ method extensions and LINQ queries - they both have a seperate syntax where the former is more powerful and OOP focused where the latter is more a SQL like language construct which always start with a 'from' and end with a 'select' keyword
+-lambda exppresion: anonymous function decalred inline using the => syntax
+-you can use linq in multiple contexts ie: you can use it query SQL and XML and not have to learn individual languages to query those constructs - it is a versitle querying technology
+-value types cannot be null in C# - we can use nullable types for situations to cater for null values (ie: birthdate column in a customer table in a db as not everyone wants to share their birthdate) - by using a nullable type in this example we can map that table to a C# class
+-casting involve converting one type to another
+-we append a question mark to a type if its a nullable type ie: DateTime? date = null;
+-null coalasing operater: ?? which means if object has a value use that otherwise return null  - it is used to provide a default value for nullable types or reference types. It is often used to simply null checks and provide fallback values in cases where a value might be null. It is similar to the ternary operator ie: DateTime date2 = date ?? DateTime.Today; - here if date has a value assign it it to date2 otherwise if its null use DateTime.Today
+-programming languages are divided into two types: statically typed languages and dynamically typed languages - the difference is for static, type resolution is done at compile time while dynamic its done at runtime
+-benefits: static - has early feedback which can help to reduce bugs and allows us to use intellisense in many code editors. dynamic - easier and faster to code
+-C# started as static but in .net 4 dynamic capability was added
+-with dynamic types we need to write more unit tests to make sure our app runs properly at runtime because without no type safety its possible to introduce weird bugs where your application will run but can crash later while the program is executing
+-var lets the compiler infer the variable type so we dont have to explicitly define it
+-when you use dynamic variables in an expression, the expression will end up being dynamic as well
+-most often with dynamics we get implict conversion from and to the target type so we dont have to do a conversion or cast and at runtime the object will be cast to target type: ie: int i = 5; dynamic d = i; - here d will be an int at runtime
+-in .net an exception is essentially a class
+-stack trace: shows the sequence of methods that were called until the exception was thrown - it shows the sequence of method calls in the reverse order
+-we use try / catch blocks to handle exceptions
+-In the catch block we usually have two choices: we can recover from the error and prevent the app from crashing or we can re-throw the error (send the error back to the caller of the error producing code)
+-as a guideline we should always have a global exception handling block in our app
+-when handling exceptions we can have multiple catch blocks that have go from more specific to more generic exceptions, we do this because more generic exceptions, such as those contained in the parent class will immediately catch all exceptions of any type when they come through meaning the catch blocks below them will never get executed.
+-a parent class can hold a pointer to any of its children meaning a reference to any of its instances
+-polymorphism: When you create an object of a child class it is also an object of its parent class, meaning you can assign it to a variable of the parent class type. This is known as polymorphism
+-unmanaged resources: resources that are not managed by CLR, these resources are not garbage collected. Examples are file handles, db connections and netowrk connections etc - in these types of situtations we need to manually do the clean up - this is when we can use a finally block, ie: to close a file once we are done writing or reading from it. Exception or no exception, the finally block will always be exec
+-any class that uses unmanaged resources is expected to implement the interface IDisposable
+-a StreamReader is a class that is used for reading files
+- we can manually throw an exception using the throw and new keywords, ie: throw new Exception("Oops");
+-when we use the using statement, internally the compiler will create a finally block under the hood, which will call the dispose method of StreamReader, so we dont have to manually call it - so using statement is the preferred way
+-program execution models: synchronous and asynchronous
+-synchronous program execution: program is executed line by line, one at a time - when a function is called, program execution has to wait until the function returns before it continues execution to the next line - this is also known as blocking execution
+-asynchronous program execution: when a function is called, program execution continues to the next line without waiting for the function to complete - this is also known as non-blocking execution
+-async programming improves the responsivness of your app, the app wont freeze when program execution is blocked due to an operation that may take some time to complete
+-we use async when we have to deal with blocking operations ie: working with files and db's, accessing the network (web), accessing other apps, working with images
+-all async methods need to be decorated with the async keyword
+-a task is an object that encapsulates the state of a async operation
+-most methods that are blocking operations, have an async or non blocking version and they all end with the Async suffix
+-when we call an async method (Async suffix), we need to prefix with an await operator - this is just a marker so the compiler knows the operation maybe costly and take a bit of time, is this case, instead of blocking the thread, it will return the control immediately and once the operation completes that may take a bit of time will come back and execute the rest of the code it needs to. The await keyword has nothing to do with the program execution having to wait for the method to complete, it tells the runtime not to wait for the result of this method and continue execution, once the operation that takes some time is complete, the runtime will come back and execute the rest of the code underneath that operation.
+-in a web app, when a request comes to the server, a thread is allocated to handle that request, during execution of that request, if there is a blocking operation that thread is going to be busy
+-each machine has a limited number of threads, they are finite resources so if they are all occupied then the server cant handle additional requests until the some threads become available, if we have a lot of concurrent connections and all our threads are busy waiting for a blocking operation, that server becomes unresponsive - the only way out of this is to add more servers or hardware which is known as scaling out - we can improve this by using an async model, so when a thread has to execute a blocking operation, the control immediately returns to the thread and it can be used to handle another request. This is how async or non blocking techniques are used in asp.net MCV web applications, in this sense we scale up instead of scale out - nodeJS also has this non blocking architecture
+-anytime we have to deal with blocking operations we should tend to use async and await
+-we can only use the await operator within an async method

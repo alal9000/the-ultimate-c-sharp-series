@@ -1,0 +1,282 @@
+upto: demo: Arrays
+
+
+-C# is a programming language while .net is a framework for building apps on windows
+-.net consists of two components: CLR (Common language runtime) and class library that we use for building apps
+-CLR or common language runtime is the runtime environment for .NET apps
+-when C and C++ is complied it gets complied into the native machine code (binary) for the platform in which it is runnning (windows, mac, linux) java code however when it is compiled it gets translated into an intermediate language called byte code so its portable accross platforms the same is true with C# - when you compile your c# code the result is what we call IL or intermediate language code, its independent of the computer in which its running. The CLR then translates that IR code into the native code for the machine in which its running
+-The CLR is an application that is sitting in the memory whose job it is to translate the IR code into the machine code - this process is called just in time compilation or JIT
+-the JVM translates bytecode into the native binary representation for the machine in which its running, the same can be said for the CLR
+-the difference between JIT and pre compilation (C/C++) that JIT is done at runtime with a combination of interpretation, while precompilation is not prior to runtime and results in a standalone file that can be executed independently by the computers CPU
+-when you write an app in C# you dont have to worry about compiling that into the native code for different machines - as long as a machine has CLR that can run your app
+-at a high level when you build an app with C# your app consists of building blocks called classes. These classes colaborate with each other at runtime and as a result the app provides some functionality
+-A class is a container that has some data which is also called attributes and functions which is also called methods. Methods have behaviour, they exec code or do things for us. Data represents the state of the app. Each class in an app is responsible for a piece of functionality
+-we use namespaces to organise classes, especially as the number of classes grows inside an app. So a namespace is a container for related classes
+-as namespaces grow, we need different ways of partitioning an app, thats where we use an assembly. An assembly is a container for related namespaces - physically its a file on the disk which can either be an executable or a dll (dynamically linked library). So when you compile your app, the compiler builds one or more assemblies depending on how you partition your code.
+-an assemby is a single unit of deployment of .NET apps
+-in VS we have the concept of solution which can have one or more projects. As your app grows you add more projects to your solution each responsible for something different
+-when you create a project with VS by default it adds a reference to a bunch of assemblys
+-utility classes are classes outside our namespace that provide common functionality
+-by default, every console app we create with VS has a class called program and within this class we have a method called main and that is the entry point to our app
+-methods have input and output. What goes inside parethesis is the input to a method which is called parameter or argument. Parameters can be optional
+-an exe file represents a program that can be executed
+-a DLL is a file that includes code that can be re-used across different programs
+-a variable is a name we give to a storage location in memory where we can store a value
+-a constant is an immuteable value. Its a value we know at compile time and it cannot change during the life of the app. We can create safety in our app by using constants
+-when declaring a variable we can optionally assign it a value, we dont have to but we cannot use or access a variable unless it is initialized (given an initial value)
+-we cannot define a constant without setting its value
+-identifiers cannot start with a number, be a reserved keyword (ie: int [not we can prefix with @ to use like @int]) or include whitespace. Also always use meaningful names
+-naming conventions: use camel case for local variables and caps for constants
+-commonly used primitive types in C# - integral numbers: byte, short, int, long - real numbers: float, double, decimal - characters: char - boolean: bool
+-for real numbers (with a floating point) - the more presicion you need the bigger type you should use - this will help to combat floating point inpresicion
+-characters in C# are unicode not ascii like C
+-double is the default data type used by the C# compiler when you are using real numbers. So if you want to declare a float or a decimal you need to explicitly tell the compiler to treat the number you have as a float or decimal by postfixing the number with f or m respectively. ie: float number = 1.2f;
+-non primitive types: String, Array, Enum and Class
+-overflowing: we have exceeded the boundary of the data type ie: byte number = 255; if we then increment number and print the result it will show 0 because the byte data type only holds numbers upto 255. We dont have overflow checking in C# by default. We can stop overflowing in our apps by using the checked keyword
+-our programs will crash if we dont handle exceptions which are typically thrown at runtime. Exceptions represent abnormal or error conditions that occur during the execution of a program
+-scope: where a variable / constant has meaning and is accessible. A variable or object defined in a block of code is accessible in its block and any of its child blocks
+- we enclose characters in C# in single quotes but strings in double quotes
+-everything in blue in VS is a keyword
+-the var keyword makes variable declarations easier - as the C# compiler will auto detect the data type of the variable ie: var number = 2;
+-by default C# treats integral numbers as int ie: var number = 2; here the .NET type of number is System.Int32 which maps to the int data type in C#
+-ctrl + alt + J will bring up object browser in VS
+-type conversion in C#: implicit, explicit (casting) and conversion between non-compatible types
+-when the compiler is sure that the types are compatible and no data loss will happen, values can be converted to a different type implicitly
+-when the compiler knows there is a chance for data loss, it doesn't allow implicit type conversion and wont compile. In those cases, you need to explicitly tell the compiler you are aware of the data loss and still want to go ahead with the conversion, in these situations we prefix the variable with the target type ie: int i = 1; byte b = (byte) i; this is what we call casting
+-we cannot use explicit casting for non-compatible types, it wont compile ie: casting a string to an int ie: string s = "1"; int i = (int)s; - in these situations we need to use the Convert class or Parse method
+-each exception or error has a type and a message
+-for try/catch: the code in the try block will be monitored and if an exception or error happens control will move to the catch block and we can write our error handling logic there. By utilizing the try / catch block this will prevent our app from crashing - unhandled exceptions will crash our app. Unhandled exceptions will be propagated to the .NET runtime and the .NET runtime's mechansim is to stop your app and display the error.
+-exceptions are thrown during runtime, not compile time. Your app may compile but still throw an exception during runtime
+-C# operators: arithmetic, comparison, assignment, logical, bitwise
+-there are two ways we can apply increment and decrement operators: postfix - ie: int a = 1; int b = a++; here a is assigned to b then a is incremented (a = 2, b = 1). Prefix ie: int a = 1; int b = ++a; here a is incremented then assigned to b (a = 2, b = 2)
+-augmented assignment operators: a += 3 is the same as a = a + 3 or add 3 to a. The same goes for subtraction, multiplication and division. We can call them addition assignment operator or subtraction assignment operator and so on
+-logical operators are used in boolean expressions (return a boolean value true or false) which are often used is conditional statements: And - &&, Or - ||, Not - !
+-bitwise operators: are often used in low level program like windows API, encryption or sockets. And - &, Or - |
+-rule of thumb for logical AND: if both variables x and y are true then the expression x && y will be true otherwise, it will be false
+-rule of thumb for logical OR: if either (at least one) variables x and y are true then the expression x || y will be true otherwise, it will be false. This means the only time logical OR evaluates to false is when both operands are 
+false
+-easy way to remember logical AND / OR: AND = both need to be true, OR = either need to be true (for the entire expression to evaluate to true)
+-logical NOT: ! - reverses the value of a variable or expression. ie: true will be false and vice versa
+-often its a good practice to prefix boolean names with 'is' or 'has' (if possible)
+-the printed result of a arithmetic operation will be the same type as its operands ie: var a = 10; var b = 3; Console.WriteLine(a / b); here for this program we will get 3 because the result is an int because the operands are also ints
+-the result of a comparison expression is always a boolean value - true or false
+-not operators are applied to boolean values or boolean expressions
+-whenever we have two negatives in your code, we can inverse that to a single positive
+-keep comments to minimum, only when required - explain whys and hows not whats
+-classes are types or blueprints for which we create objects
+-variables in a class are also called fields
+-we use the new operator when we need to allocate memory for an object ie: Person person = new Person();
+-CLR has a process called garbage collection, which will deallocate memory for you and automatically remove unused objects from the memory
+-the static modifier on a method allows us to access the method directly on the class itself. We do not need to create an object first. Note we cannot access static members from objects
+-we use the static modifer to represent a concept where only a single instance of a method / field should exist in memory. When we dont use the static modifier, the method or field will exist on every object instantiated from a class
+-Structs are a type in C# similar to classes. The difference is instead of using the class keyword we use the struct keyword. The are small subtle differences between the to but 99% we use classes instead of structs. The only time we should use structs is if we have a small lightweight object ie: public struct RgbColor { public int Red; public int Green; public int Blue; }. Structures are more efficient in terms of memory useage if we have 10s of thousands of objects
+-Array: a data structure to store a collection of variables of the same type. In C# arrays have a fixed size which means you need to specify it during declaration and it cannot be changed, we can use curly braces to initialize our array during declaration if we know the values we want to store ahead of time ie: var numbers = new int[3] {1, 2, 3};
+-a string literal is a sequence of characters enclosed in quotes ie: "Mosh"
+-String Format is simialr to string templates in JS
+-similar to java, strings in C# are immuteable which means once you create them you cannot change it, ie: you can't index into a string and set a new character at that index. There are methods in the string class that allow you to manipulate and change a string but they return a new string leaving the original unchanged
+-note there are escape characters for strings in C# like \n for a new line
+-we can prefix our string with an @ sign to make our string a 'verbatim string' which means we dont have to escape special characters like backslash. These are particularly handy when dealing with file paths
+-a runtime is a set of software entities designed to execute code within an environment
+-all primitive types in C# map to a type in the .NET framework. All the keywords we use like int, string, float, bool all map to their corresponding type in the .NET framework - all primitive types are structs but strings are classes
+-whenever we need to use a backslash, new line or tab use a verbatim string as its more readable
+-enums: a set of name / value pairs which are constants. Use enums where we have a number of related constants. The enum will be a new type in your app like structs or classes. We can also optionally specify a type when declaring our enum ie: public enum shippingMethod : byte { regularAirMail = 1, registeredAirMail = 2, express = 3; }
+-as a best practice we should initialise the values of the members in our enums. If we dont initialize our enums with values, the first constant will be given the default value of 0, the second with 1, third with 2 and so on. (all ints)
+-internally enums are represented as ints so to get the numeric value of an enum we can cast the enum into an int. ie: public enum shippingMethod { REGULARAIRMAIL = 1, REGISTEREDAIRMAIL = 2, EXPRESS = 3 } var method = shippingMethod.EXPRESS; Console.WriteLine((int)method); here 3 will be returned from our WriteLine method.
+-enums can only be integral types like byte, short, long etc we cannot directly use non-numeric types like string
+-every object in C# has a method called ToString() - so technically we can convert anything into a string without doing extra work
+-Console.WriteLine() by default always calls the ToString() method on any value you pass to it
+-parsing means getting a string and converting that to a differnt type
+-different versions of the same method are called overloads
+-Type is a class in .NET that represents meta data about other types
+-both strings and arrays are classes under the hood
+-in C# we have two main types from which we can create new types: structures and classes - primitive types are structures, arrays and strings are both classes. We can also create our own custom structures and classes.
+-structures are value types - they are allocated on the stack and memory allocation is done automatically. These objects are also removed automatically when out of scope
+-classes are reference types - they are allocated on the heap (unlike the stack this memory is more sustainable) and memory allocation needs to be manually (ie: new operator). When these objects go out of scope it will continue to exist on the heap for a little while, it wont be removed immediately like value types, there is a process called garbage collection which gets done by the CLR (runtime).
+-Once in a while CLR will look at the objects in memory that are no longer used and remove them from the heap.
+-when you copy an object to a new variable, depending on whether that object is a value type or reference type there will be two differnt outcomes
+-an object basically a software component or entity
+-when you copy a value type to a different variable a COPY of that value is taken and stored in the target variable - thats why we call them value types, their VALUES are copied. This means if we make a change to one variable it will not effect the other variable because they are both in different, independant locations in the stack memory
+-when you declare and initialize a reference type (ie: var array1 = new int[3] { 1, 2, 3 };). The actual object is stored on the heap and given an address. A variable is then stored on the stack and given an idendifier of the variable name (which represents an address on the stack). The value inside this identifier is the ADDRESS of the object stored on the heap not the actual value like value types. This means when we make a copy of the object and store it in another variable then both these variable REFERENCE or point to the same object in memory. This means if we make a change to the object (say in this case, change the value of the element at index 0) through either the first or second variable, then the change will be visible on both variables. Thats why we call these types reference types because they reference an address not a value. When we copy them, their reference or memory address is copied, not their actual value
+-in C# we have two types of conditional statements, we have if / else and switch / case - these language constructs are used for controlling program flow and execution
+-we have a conditional operator ie: a ? b : c which is a shorthand for if / else
+-while its possible to nest multiple if statements its something we should avoid because it it results in hard to read, maintain and understand code - this is what we call a code smell
+-with switch we put a variable inside parethesis and compare that variable with different values. Each case statement is terminated by a break statement
+-When we define methods as static we are able to call them from the class itself and not have to create a seperate object
+-remember that passing arguments by value vs passing arguments by reference to a method can affect the output you get. When we pass by value we pass a copy of the variable, that means the original variable is not affected by any changes made in the method. When we pass by reference we actually change the original underlying variable and any changes made to the variable by the method will change the original variable
+-we can use the object initialization syntax to set fields on newly created objects ie: var person = new Person() { age = 20 };
+-we have two main categories of types in C#: classes (Strings, Arrays and custom classes) and structures (primitive types and custom structures) - the difference between the two types is purely memory management ie: reference and value types respectively
+-build programs from the ground up. Start with a simple implementation first then slowly add to it new features and complexity. Once you have a working program, refactor to make your code to be more consciece, readable and easier to maintain
+-build programs piece meal, small baby steps at a time
+-make sure to test all edge cases when testing your program / algor
+-iterations statements or loops are used for repeatedly executing a sequence of statements
+-in C# we have 4 iteration statements or loops: for, foreach, while and do-while
+-loops and conditional statements are part of a programs control flow
+*-for loops have 3 parts: initialization clause (counter variable for controlling the number of times the loop will be executed), condition clause (loop will continue until this condition evaluates to false), iteration clause (increment or decrement the counter variable)
+-foreach is used to iterate over elements of an enumerable (list or array nature) object ie: strings and arrays are enumerable
+-while loops will continue to exec as long as the condition inside parethesis is true, while a counter is often used with a while loop we dont always need it, we can use any condition.
+-do while is very similar to while loops but they will be executed at least once because the code block runs first regardless if the condition is true or false AND THEN the condition is checked. Again we dont always need a counter, we can use any condition
+-we usually use for loops when we know the amount of iterations ahead of time and while when we dont
+-two statements associated with loops: break - jumps out of the loop, continue - jumps to the next iteration
+-whenever we have an enumerable object like a string, array or list its much easier to iterate over it using foreach compared to for
+-when we use object initialization syntax for declaring arrays ie: var numbers = new int[] { 1, 2, 3, 4 }; we dont need to specify the length of the array inside square brackets, the compiler infers the length from the number of objects we pass inside curly braces
+-when the control sees the continue keyword it goes back to the next iteration of the loop
+-internally characters are represented as numbers in computers as they dont understand characters and words
+-You can pass arguments to the constructor inside parethesis when you new up a class
+-string keyword maps to the String class in the .NET framework, other keyword types map to their corresponding type in .NET also
+-we create new instance of classes using the new operator
+-classes in C# are reference types
+-a runtime is a program execution entity
+
+-an array represents a fixed number of variables of a particular type
+-in C# we have two different types of arrays, single dimension and multi dimension arrays
+-we have two types of multi dimension arrays in C#, rectangular and jagged. Rectangular, each row has the exact same number of columns, with jagged arrays however, the number of columns in each row can be different. We can think of the jagged array as an array of arrays.
+-we use two square brackets to represent a jagged array
+-try to slowly step through the program in your head to understand the programs execution. Like a stepping through a debugger.
+-if a class member like a method or a field is declared as static that means its accessible from the class itself, otherwise that member is accessible via the object (instance members)
+-A method can have different overloads which means different versions
+-arrays have a fixed size, so it means once you create them they cant be changed
+-lists in C# are similar to an array in the sense that its a data structure for storing a number of objects of the same type - but we use a list in situations where we dont know ahead of time how many objects we are going to store in that list.
+-arrays have a fixed size while lists have a dynamic size
+-in OOP a class can be viewed as a type
+-when working with a generic type you need to specify generic parameters inside the angle brackets
+-initialization in programming refers to setting initial values
+-interfaces are implemented by different classes
+-in C# we are not allowed to modify our collection (list, array etc) inside a foreach loop
+-arrays have fixed size, so once we allocate them we cannot change their size, if we want to work with a dynamic array we need to use a list, these days 99.9% of the time we use lists not arrays
+-In C# we cannot print a list directly, it will just print type information. We have to iterate through the list using foreach and print each item individually. otherwise we can use the join method to print all the items in a single line seperated by comma
+-using the >= or <= operators can help to make your code more readable
+-only one line after if and else use no curly braces to help make more readable
+-better to use var for your variables and let the compiler to infer the type, its shorter
+-the modulus operator gets unexpected output when your first operand is smaller than the second ie: 6 % 12. Here 12 goes into 6, 0 times and whats left over is the number you started with which is 6, so 6 % 12 = 6. The same for 1 % 3, the result is 1. The original number you start with just comes back.
+-for zero indexing we often have to add one more element to account for the number zero
+-An api is a mechanism for software components to communicate and interact with each other
+-in OOP classes can also be described as types
+-programming styles: OOP, functional, imperative
+-algorithms are nothing more than step by step procedures for solving problems
+-the continue keyword is going to take you back up to the top of loop execution
+-arrays in C# have a fixed size so once you allocate them you cannot change their size, so if you want to work with a dynamic array you need to use a list - these days 99.9% of the time we use lists not arrays - so prefer to use lists
+-datetime objects are immuteable in C# which means once you create them you cannot change them
+-TimeSpan represents a length of time - this is also immuteable
+-if you have two DateTime objects and you subtract them, the result is a TimeSpan
+-DateTime represents a point in time while TimeSpan represents a duration
+-types can be primitive or complex types (reference or value) or even classes or structs.
+-remember the difference between pass by value and pass by reference
+-bandwidth describes the capacity of data transfer
+-overloading in C# allows us to have the ability to define multiple methods with the same name within the same class but with different parameter lists - these methods have the same name but have different signatures
+-optionally we can pass a format string into our ToString method when we convert an int to a string ie: i.ToString("C"); - here C is a format string specifying currency
+-when building web / mobile or desktop apps, input from the user always comes as a string - so sometimes we need to convert that to the target type
+-every object in dot net has a ToString method
+-try to avoid magic numbers in your code by converting them to variables or constants to make your code more expressive
+-algorithm: step by step instructions in how to perform a proceedure
+-we can use the augmented assignment operator to cumulatively add (also multiply, subtract, divide) to a variable ie: totalCharacters += word.Length; - its like keeping a running total
+-if we have a lot of string manipulation operations, we can use the StringBuilder class which represents a mutable string
+-the StringBuilder class allows us to perform operations and mutate the original string instead of performing operations and returning (also creating a new string object in memory) a new string like we would do in methods of the String class
+-StringBuilding will also help to make us memory efficient programs as we dont create a new instance in memory of a new string each time we want to perform a string manipulation like we would with the String class
+-generally speaking we can only chain methods that return a value and not void methods
+-procedural programming: A programming paradigm based on procedure (function / method) calls
+-rule of thumb for extracting out functions. Seperate business logic from presentation logic - ie: calls to Console and string manipulation
+-all the classes to work with files and directories are located in the system.IO namespace
+-everytime you call a static method of the file class some security checking is done by the OS to make sure the current user has access to the file - so this can effect performance
+-what seperates a good programming from an average one is that good programmers often think of edge cases ie: uncommon scenarios
+-defensive programming: we check the input that we get satisfies some criteria and the data is clean before proceeding with program execution
+-side effects in your methods are not good, they make it hard to find bugs and make your code unreliable
+-becareful about putting your application in the wrong state as that state can be persisted in the db. This is the reason for defensive programming and checking data is in a clean and good state before program execution
+-with defensive programming we want to throw the errors right when the issue occurs and supply a meaningful message so we dont get cryptic low level exceptions.
+-make sure we are asking the right questions and cover all edge cases when it comes to input validation and defensive programming
+-when validating input and defensive programming common checks include checking for null, 0 or negative values
+-if we get lost while debugging we can use the call stack window to show the order of method calls
+
+====================================================================================================================================================================================================================================
+
+-need to brush up on addition, subtraction, multiplication, division assignment operators
+-review the factorial exercise again
+
+
+namespace HelloWorld
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            var number = 1;
+            Increment(number);
+            Console.WriteLine(number);
+        }
+
+        public static void Increment(int number)
+        {
+            number += 10;
+        }
+
+        public static void MakeOld(Person person)
+        {
+            person.age += 10;
+        }
+    }
+}
+
+
+
+
+namespace HelloWorld
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Enter speed limit: ");
+            var speedLimit = Console.ReadLine();
+            int convertedSpeedLimit = Convert.ToInt32(speedLimit);
+
+            Console.Write("Enter speed of car: ");
+            var speed = Console.ReadLine();
+            int convertedSpeed = Convert.ToInt32(speed);
+
+            if (convertedSpeed < convertedSpeedLimit)
+                Console.WriteLine("OK");
+            else if (convertedSpeed > convertedSpeedLimit)
+            {
+                int difference = convertedSpeed - convertedSpeedLimit;
+                int demeritPoints = difference / 5;
+
+                var result = demeritPoints >= 12 ? "suspended" : Convert.ToString(demeritPoints);
+                Console.WriteLine(result);
+            }
+            else
+                Console.WriteLine("even");
+        }
+    }
+}
+
+
+namespace HelloWorld
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            for (var i = 1; i <= 10; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    Console.WriteLine(i);
+                }
+            }
+
+            for (var i = 10; i >= 1; i--)
+            {
+                if (i % 2 == 0)
+                {
+                    Console.WriteLine(i);
+                }
+            }
+        }
+    }
+}
+
+
+
+==============
+
+
+0409990431 - Aleisha Rozis - B211 Ransley Street Penrith, nsw 2750
