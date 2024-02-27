@@ -1,0 +1,27 @@
+-ASP.NET Core: microsoft C# tool to build web apps
+-razor is a dynamic markup language that combines html and C#
+-view: web page (razor html / css code) - manages the display of data and gets it from the controller. Dynamically combines data with html in a template
+-model: classes (objects) - manages the behaviour and data
+-controller: connects models, business logic and web pages. Handles the logic of the computer code. Handles page events and navigation between pages
+-MVC is a design pattern that helps to enforce seperation of concerns to avoid mixing presentation logic, business logic and data access logic together
+-orm: help to automate db table creation as they map classes to db tables. Db is updated using migrations
+-data access object (DAO): manually create tables and write our own SQL statements - alternative to ORM usually perferred by db admins because they can have more control and visibility
+-Entity framework: Microsoft's ORM
+-for small simple apps ORM's are very good but large companies with complex apps often use DAO's because they have finer grained control
+-migrations is the language of creating tables
+-appsettings.json is wher your runtime settings are defined like db connection strings etc
+-models are the representation of data within our db
+-Views are the html markup that we display to the user
+-controllers are responsible to handling http requests and providing responses
+-routers are an extension to MVC - they select the right controller to handle the request based on the incoming url pattern
+-methods of a controller is known as actions
+-the urls in our app is how the controller is actually controlled
+-our Index() method within the HomeController class is the entry point to our website
+-Web Essentials is now called "The Essentials" by the same author.
+-wwwroot folder is where we have all our assets like static files such as css / js files
+-POCO: plain old C# object
+-[Key] - refers to primary key
+-[ForeignKey("Address")] - refers to foreign key
+
+-primary key: think P for parent - one parent can have many children
+-foreign key: think child
